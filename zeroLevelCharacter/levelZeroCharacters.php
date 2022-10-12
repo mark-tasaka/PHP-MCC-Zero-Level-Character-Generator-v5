@@ -79,18 +79,8 @@
             $archaicAlignmentChoice = 0;
         } 
 
-
-        if(isset($_POST['theCharacterSheetBox']) && $_POST['theCharacterSheetBox'] == 1) 
-        {
-            $characterSheet = "images/mccLvZeroCharSheet.png";
-        }
-        else
-        {
-            $characterSheet = "images/mccLvZeroCharSheet2.png";
-        } 
-
-
-
+        
+        $characterSheet = "images/mccLvZeroCharSheet.png";
 
 
         if(isset($_POST["theAbilityScore"]))
