@@ -4,6 +4,13 @@ The fifth iteration of the Mutant Crawl Classics (DCC) Zero-Level Character Gene
 
 --------------
 
+
+Update 1.01: 2022-10-11
+
+Updated levelZeroCharacters.php.  New character sheet (mccLvZeroCharSheet.png) added.
+
+
+
 Initial Commit: 2022-10-03
 
 The intial commit for the Mutant Crawl Classics Zero Level Character Generator Version 5.
