@@ -17,7 +17,7 @@ function dieRollMethodText($choice)
         break;
 
         case 4:
-            return 'Ability Scores: Roll 1d10+8;';
+            return 'Ability Scores: Roll 1d5+1d6+1d7;';
         break;
 
         case 5:

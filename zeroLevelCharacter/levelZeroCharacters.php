@@ -8,13 +8,13 @@
 	<meta charset="UTF-8">
 	<meta name="description" content="Mutant Crawl Classics Zero Level Character Generator. Goodman Games.">
 	<meta name="keywords" content="Mutant Crawl Classics, Jim Wampler, Goodman Games,HTML5,CSS,JavaScript">
-	<meta name="author" content="Mark Tasaka 2019">
+	<meta name="author" content="Mark Tasaka 2022">
 		
 
 	<link rel="stylesheet" type="text/css" href="css/mcc_zero_characters.css">
 
     
-    <link rel="icon" href="../images/favicon/favicon.png" type="image/png" sizes="16x16"> 
+    <link rel="icon" href="../images/favicon/icon.png" type="image/png" sizes="16x16"> 
     
     
    <script type="text/javascript" src="js/occupation.js"></script>
@@ -36,9 +36,9 @@
     <?php
     
     include 'php/characterSex.php';
-    include 'php/characterName.php';
     include 'php/diceRoll.php';
     include 'php/message.php';
+    include 'php/nameSelect.php';
     
         
         if(isset($_POST["theSex"]))
@@ -53,21 +53,65 @@
         $sexOfCharacter2 = getSex($characterSex);
         $sexOfCharacter3 = getSex($characterSex);
     
-        $characterName0 = getCharacterName($sexOfCharacter0);
-        $characterName1 = getCharacterName($sexOfCharacter1);
-        $characterName2 = getCharacterName($sexOfCharacter2);
-        $characterName3 = getCharacterName($sexOfCharacter3);
-
-        $characterSurname0 = getSurname();
-        $characterSurname1 = getSurname();
-        $characterSurname2 = getSurname();
-        $characterSurname3 = getSurname();
-    
-        if(isset($_POST["theCharacterName"]))
+      
+        if(isset($_POST["theGivenName"]))
         {
-            $nameOption = $_POST["theCharacterName"];
-    
+            $givenName = $_POST["theGivenName"];
+
         }
+
+        if($givenName == '100')
+        {
+            $givenName0 = rand(0, 49);
+            $givenName1 = rand(0, 49);
+            $givenName2 = rand(0, 49);
+            $givenName3 = rand(0, 49);
+        }
+        else
+        {
+            $givenName0 = $givenName;
+            $givenName1 = $givenName;
+            $givenName2 = $givenName;
+            $givenName3 = $givenName;
+        }
+        
+
+
+        if(isset($_POST["theSurname"]))
+        {
+            $surname = $_POST["theSurname"];
+
+        }
+
+        if($surname == '100')
+        {
+            $surname0 = rand(0, 37);
+            $surname1 = rand(0, 37);
+            $surname2 = rand(0, 37);
+            $surname3 = rand(0, 37);
+        }
+        else
+        {
+            $surname0 = $surname;
+            $surname1 = $surname;
+            $surname2 = $surname;
+            $surname3 = $surname;
+        }
+
+        $genderName0 = getNameGender($sexOfCharacter0);
+        $genderName1 = getNameGender($sexOfCharacter1);
+        $genderName2 = getNameGender($sexOfCharacter2);
+        $genderName3 = getNameGender($sexOfCharacter3);
+
+        $characterName0 = getName($givenName0, $surname0, $genderName0);
+        $characterName1 = getName($givenName1, $surname1, $genderName1);
+        $characterName2 = getName($givenName2, $surname2, $genderName2);
+        $characterName3 = getName($givenName3, $surname3, $genderName3);
+
+        $nameSelectMessage0 = getNameDescript($givenName0, $surname0);
+        $nameSelectMessage1 = getNameDescript($givenName1, $surname1);
+        $nameSelectMessage2 = getNameDescript($givenName2, $surname2);
+        $nameSelectMessage3 = getNameDescript($givenName3, $surname3);
 
         
         if(isset($_POST['theCheckBoxAlignment']) && $_POST['theCheckBoxAlignment'] == 1) 
@@ -174,18 +218,16 @@
    <section>
        
 	   <aside id="topleft">
+
     	<span id="name0">
            <?php
-            if($nameOption == 0)
-               {
-                    echo $characterName0 . ' ' . $characterSurname0;   
-               }
-            else
-            {
-                echo '';
-            }
+
+           echo $characterName0;
+
+
             ?>
            </span>
+
            
            
 		<span id="profession0"></span>
@@ -270,7 +312,7 @@
 		   <span id="dieRollMethod0"> 
            <?php
             
-            echo $dieRollMessage . $hitPointsMessage;
+            echo $nameSelectMessage0 . '<br/>' . $dieRollMessage . $hitPointsMessage;
             
             ?> 
             </span>
@@ -283,18 +325,16 @@
 
               
 	   <aside id="topright">
+        
     	<span id="name1">
            <?php
-            if($nameOption == 0)
-               {
-                    echo $characterName1 . ' ' . $characterSurname1;   
-               }
-            else
-            {
-                echo '';
-            }
+
+           echo $characterName1;
+
+
             ?>
            </span>
+
            
 		<span id="profession1"></span>
 		<span id="strength1"></span> <span id="strengthMod1"></span>
@@ -375,7 +415,7 @@
            <span id="dieRollMethod1">
            <?php
             
-            echo $dieRollMessage . $hitPointsMessage;
+            echo $nameSelectMessage1 . '<br/>' . $dieRollMessage . $hitPointsMessage;
             
             ?> 
             </span>
@@ -390,19 +430,16 @@
        
                      
 	   <aside id="bottomleft">
+        
     	<span id="name2">
-            
            <?php
-            if($nameOption == 0)
-               {
-                    echo $characterName2 . ' ' . $characterSurname2;   
-               }
-            else
-            {
-                echo '';
-            }
+
+           echo $characterName2;
+
+
             ?>
            </span>
+
            
 		<span id="profession2"></span>
 		<span id="strength2"></span> <span id="strengthMod2"></span>
@@ -486,7 +523,7 @@
            <span id="dieRollMethod2">
            <?php
             
-            echo $dieRollMessage . $hitPointsMessage;
+            echo $nameSelectMessage2 . '<br/>' . $dieRollMessage . $hitPointsMessage;
             
             ?> 
             </span>
@@ -499,17 +536,17 @@
        
                             
 	   <aside id="bottomright">
+
+       
     	<span id="name3">
            <?php
-            if($nameOption == 0)
-               {
-                    echo $characterName3 . ' ' . $characterSurname3;   
-               }
-            else
-            {
-                echo '';
-            }
-            ?></span>
+
+           echo $characterName3;
+
+
+            ?>
+           </span>
+
            
 		<span id="profession3"></span>
 		<span id="strength3"></span> <span id="strengthMod3"></span>
@@ -591,7 +628,7 @@
            <span id="dieRollMethod3">
            <?php
             
-            echo $dieRollMessage . $hitPointsMessage;
+            echo $nameSelectMessage3 . '<br/>' . $dieRollMessage . $hitPointsMessage;
             
             ?> 
             </span>

@@ -39,4 +39,22 @@ function getSex ($characterSex)
     
 }
 
+
+function getNameGender($select)
+{
+    if($select === 'Male')
+    {
+        return 0;
+    }
+    else if($select === 'Female')
+    {
+        return 1;
+    }
+    else
+    {
+        $randNumber = rand (0,1);
+        return $randNumber;
+    }
+}
+
 ?>
